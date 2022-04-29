@@ -13,7 +13,7 @@ ALTER TABLE {{.prefix}}blocks_history ADD COLUMN board_id VARCHAR(36);
 {{- /* cleanup incorrect data format in column calculations */ -}}
 {{- /* then move from 'board' type to 'view' type*/ -}}
 {{if .mysql}}
-UPDATE {{.prefix}}blocks SET fields = JSON_SET(fields, '$.columnCalculations', cast('{}' as json)) WHERE fields->'$.columnCalculations' = cast('[]' as json);
+UPDATE {{.prefix}}blocks SET fields = JSON_SET(fields, '$.columnCalculations', cast('{}' as json)) WHERE fields->'$.columnCalculations' = cast('{}' as json);
 
 UPDATE {{.prefix}}blocks b
   JOIN (
